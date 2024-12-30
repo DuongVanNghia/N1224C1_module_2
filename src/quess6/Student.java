@@ -16,10 +16,12 @@ public class Student {
     }
 
     public int getId() {
+
         return id;
     }
 
     public String getName() {
+
         return name;
     }
 
@@ -40,6 +42,7 @@ public class Student {
     }
 
     public double getScore() {
+
         return score;
     }
 
