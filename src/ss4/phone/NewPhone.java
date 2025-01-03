@@ -3,24 +3,33 @@ package ss4.phone;
 import java.util.Scanner;
 
 public class NewPhone extends Phone{
+    static Scanner sc = new Scanner(System.in);
     private int quantity;
-    public NewPhone(){
 
+    public NewPhone() {
+        super();
+        this.setId(generateNewPhoneId());
     }
 
-    public NewPhone(int id, String name, int sell, String manufacturer, int quantity) {
-        super(id, name, sell, manufacturer);
+    public NewPhone(String name, double price, int warranty, String manufacturer, int quantity) {
+        super(name, price, warranty, manufacturer);
+        this.setId(generateNewPhoneId());
         this.quantity = quantity;
     }
-    public void input(){
-        Scanner sc = new Scanner(System.in);
-        super.input();
-        System.out.println("Enter quantity: ");
-        this.quantity = Integer.parseInt(sc.nextLine());
 
+    @Override
+    public double calculateTotalPrice() {
+        return getPrice() * quantity;
     }
+
+    public void input(){
+        super.input();
+        System.out.print("Quantity: ");
+        quantity = Integer.parseInt(sc.nextLine());
+    }
+
     public void output(){
         super.output();
-        System.out.println("Quantity: " + this.quantity);
+        System.out.println("Quantity: " + quantity);
     }
 }

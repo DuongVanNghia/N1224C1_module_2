@@ -3,29 +3,54 @@ package ss4.phone;
 import java.util.Scanner;
 
 public class Phone {
-    private String id;
+    static Scanner sc = new Scanner(System.in);
+    private static int oldPhoneCounter = 0; // Đếm ID cho điện thoại cũ
+    private static int newPhoneCounter = 0; // Đếm ID cho điện thoại mới
+    private String id; // ID của từng đối tượng
     private String name;
-    private int sell;
-    private String warrantyPeriod;
+    private double price;
+    private int warranty;
     private String manufacturer;
 
-    public Phone(){
-
+    public Phone() {
+        // Constructor mặc định
     }
-    public Phone(int id, String name, int sell, String manufacturer) {
-        this.id = String.valueOf(id);
+
+    public Phone(String name, double price, int warranty, String manufacturer) {
         this.name = name;
-        this.sell = sell;
-        this.warrantyPeriod = warrantyPeriod;
+        this.price = price;
+        this.warranty = warranty;
         this.manufacturer = manufacturer;
+    }
+
+    public double calculateTotalPrice() {
+        return 0;
+    }
+
+    // Phương thức sinh ID cho điện thoại cũ
+    protected static String generateOldPhoneId() {
+        return String.format("DTC%03d", oldPhoneCounter++);
+    }
+
+    // Phương thức sinh ID cho điện thoại mới
+    protected static String generateNewPhoneId() {
+        return String.format("DTM%03d", newPhoneCounter++);
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = String.valueOf(id);
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getName() {
@@ -36,22 +61,6 @@ public class Phone {
         this.name = name;
     }
 
-    public int getSell() {
-        return sell;
-    }
-
-    public void setSell(int sell) {
-        this.sell = sell;
-    }
-
-    public String getWarrantyPeriod() {
-        return warrantyPeriod;
-    }
-
-    public void setWarrantyPeriod(String warrantyPeriod) {
-        this.warrantyPeriod = warrantyPeriod;
-    }
-
     public String getManufacturer() {
         return manufacturer;
     }
@@ -59,26 +68,23 @@ public class Phone {
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
-    public void input(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter ID: ");
-        id= String.valueOf(Integer.parseInt(sc.nextLine()));
-        System.out.print("Enter name: ");
-        name=sc.nextLine();
-        System.out.print("Enter sell: ");
-        sell=Integer.parseInt(sc.nextLine());
-        System.out.print("Enter warranty period: ");
-        warrantyPeriod=sc.nextLine();
-        System.out.print("Enter manufacturer: ");
-        manufacturer=sc.nextLine();
 
-    }
-    public void output(){
-        System.out.println("ID: "+id);
-        System.out.println("Name: "+name);
-        System.out.println("Sell: "+sell);
-        System.out.println("Warranty Period: "+warrantyPeriod);
-        System.out.println("Manufacturer: "+manufacturer);
+    public void input() {
+        System.out.print("Name: ");
+        this.name = sc.nextLine();
+        System.out.print("Price: ");
+        this.price = Double.parseDouble(sc.nextLine());
+        System.out.print("Time Guarantee: ");
+        this.warranty = Integer.parseInt(sc.nextLine());
+        System.out.print("Manufacturer: ");
+        this.manufacturer = sc.nextLine();
     }
 
+    public void output() {
+        System.out.println("ID: " + this.id);
+        System.out.println("Name: " + this.name);
+        System.out.println("Price: " + this.price + " $");
+        System.out.println("Time Guarantee: " + this.warranty);
+        System.out.println("Manufacturer: " + this.manufacturer);
+    }
 }
